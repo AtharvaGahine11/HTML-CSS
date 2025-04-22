@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Awesome Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #444;
+    }
+
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #666;
+    }
+
+    .hero {
+      background: url('https://source.unsplash.com/1600x600/?nature,travel') no-repeat center center/cover;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .about {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .about h2 {
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: #fff;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      nav {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>माझ्या वेबसाइटवर आपले स्वागत आहे🫶🏻</h1>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Explore🗺️  Dream💭  Discover🚀</h1>
+  </section>
+
+  <section class="container">
+    <div class="about">
+      <h2>About Me😉</h2>
+      <p>Hey there! 👋 I’m Atharva, a passionate traveler 🌍 who's always chasing the next adventure, a biker 🏍️ who lives for the thrill of the open road, and a total foodie 🍕 who believes good food is the gateway to a happy soul.
+
+        When I’m not out exploring new places or indulging in mouthwatering dishes, you’ll find me jamming to my favorite music 🎶, hitting the pitch for a game of cricket 🏏, or diving into deep, emotional stories 📖 – especially long ones in Marathi that tug at the heart.
+        
+        This website is my digital home – a cozy corner where I’ll be sharing my experiences, photos, and little pieces of life that make it so amazing. Whether you're here for the travel tales, the bike rides, the pet shenanigans 🐾, or just some good vibes – welcome! 🌟
+        
+        Stick around, and let’s make some unforgettable memories together! 😎✨</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 | Designed by Atharva Gahine💻</p>
+  </footer>
+</body>
+</html>
