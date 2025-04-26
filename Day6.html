@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>DAY 06</title>
+  <style>
+    body {
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      margin: 20px;
+      background-color: #444;
+    }
+  
+        section {
+      margin-bottom: 40px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      color: #00d0ff;
+      font-style: oblique;
+    }
+    table {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    th {
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+    tr:hover {
+      background-color: #96f727;
+    }
+    .alt-rows tr:nth-child(odd) {
+      background-color: #eee;
+    }
+    .inner-table {
+      border: 1px solid black;
+    }
+    .centered {
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="color: rgb(0, 234, 255); font-style: oblique;"> 25 Table Tag Practice Exercises🤪</h1>
+
+  <section>
+    <h2>Practice 1: Very Basic Table</h2>
+    <table border="1">
+      <tr><td>Mumbai </td><td> Delhi </td></tr>
+      <tr><td> Bangalore </td><td> Rajasthan</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 2: Table with Headers</h2>
+    <table border="1">
+      <tr><th>City</th><th>Population</th></tr>
+      <tr><td>Mumbai</td><td>17.67 million</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 3: Table with Caption</h2>
+    <table border="1">
+      <caption style="width: 6cm;"> Awesome Places to Visit 🌟 </caption>
+      <tr><th>Country</th><th>Capital</th></tr>
+      <tr><td>India</td><td>New Delhi</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 4: Add 3 Rows</h2>
+    <table border="1">
+      <tr><th>Fruit</th><th>Color</th></tr>
+      <tr><td>Apple</td><td>Red</td></tr>
+      <tr><td>Banana</td><td>Yellow</td></tr>
+      <tr><td>Grapes</td><td>Purple</td></tr>
+      <tr><td>Mango</td><td>Orange</td></tr>
+      <tr><td>Watermelon</td><td>Green</tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 5: Mix &lt;th&gt; & &lt;td&gt;</h2>
+    <table border="1">
+      <tr><th>Item</th><td>Pencil</td></tr>
+      <tr><th>Price</th><td>$1</td></tr>
+      <tr><th>Quantity</th><td>10</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 6: Table with Styles</h2>
+    <table style="border: 2px solid rgb(255, 0, 0);">
+      <tr><td>Styled Cell</td><td>Another</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 7: Use colspan</h2>
+    <table border="1">
+      <tr><th colspan="2">Full Row</th></tr>
+      <tr><td>Left</td><td>Right</td></tr>
+      <tr><td>Up</td><td>Down</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 8: Use rowspan</h2>
+    <table border="1">
+      <tr><th rowspan="3">Category</th><td>Math</td></tr>
+      <tr><td>Science</td></tr>
+      <tr><td>Language</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 9: Table With Emoji Caption</h2>
+    <table border="1">
+      <caption  style="width: 6cm;">🎵 Favorite Subjects</caption>
+      <tr><th>Subject</th><th>Marks</th></tr>
+      <tr><td>C++</td><td>95</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 10: Add Hover Effect</h2>
+    <table border="1">
+      <tr><th>Book📕</th><th>Author</th></tr>
+      <tr><td>Life Is Nothing💔</td><td>Atharva Gahine</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 11: Style Headings Only</h2>
+    <table border="1">
+      <tr><th style="text-align: left;">Team</th><th style="text-align: right;">Score</th></tr>
+      <tr><td>Rohit Sharma</td><td>85</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 12: Table Width</h2>
+    <table border="1" style="width: 100%;">
+      <tr><td>Wide Cell</td><td>Another</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 13: Add Border Collapse</h2>
+    <style>
+      .collapsed td, .collapsed th {
+        border: 2px dashed #444;
+        padding: 8px;
+      }
+      .collapsed {
+        border-collapse: collapse;
+      }
+    </style>
+    <table class="collapsed">
+      <tr><th>Movie</th><th>Year</th></tr>
+      <tr><td>Chaava</td><td>2025</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 14: Add Background Color to Rows </h2>
+    <table border="1" class="alt-rows">
+      <tr><th>Day</th><th>Activity</th></tr>
+      <tr><td>Mon</td><td>Sleep</td></tr>
+      <tr><td>Tue</td><td>Sleep</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 15: Combine All Tags</h2>
+    <table border="1">
+      <caption style="width: 8cm;">🧮Budget Sheet</caption>
+      <tr><th>Item</th><th>Cost</th></tr>
+      <tr><td>Rent</td><td>$500</td></tr>
+      <tr><td>Food</td><td>$200</td></tr>
+      <tr><td colspan="2" style="text-align: center;">Total: $700</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 16: Fancy Table</h2>
+    <table class="centered" style="width: 50%; border: 2px dashed purple;">
+      <caption>🎨 Colors</caption>
+      <tr><td style="background-color: red;">Red</td><td>#FF0000</td></tr>
+      <tr><td style="background-color: green;">Green</td><td>#00FF00</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 17: Capital Cities Table</h2>
+    <table border="1">
+      <tr><th>Country</th><th>Capital</th></tr>
+      <tr><td>India</td><td>Delhi</td></tr>
+      <tr><td>France</td><td>Paris</td></tr>
+      <tr><td>Germany</td><td>Berlin</td></tr>
+      <tr><td>Japan</td><td>Tokyo</td></tr>
+      <tr><td>Brazil</td><td>Brasília</td></tr>
+      
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 18: Add Images in Cells</h2>
+    <table border="1">
+      <tr>
+        <td><img width="200cm" height="200cm" src="https://media-bom2-2.cdn.whatsapp.net/v/t61.24694-24/491840155_1030092605847213_8566781990044611556_n.jpg?ccb=11-4&oh=01_Q5Aa1QFsD9N4_xCjvyq2EbLczPlty3ng71bBl6rCXySgfXenXg&oe=680F4F94&_nc_sid=5e03e0&_nc_cat=102" alt="Atharva's Pic"></td>
+        <td>Gahine Bhau❤️‍🔥</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 19: Table Without Borders</h2>
+    <style>
+      .no-border td {
+        border: 1px solid gray;
+        padding: 5px;
+      }
+    </style>
+    <table class="no-border">
+      <tr><td>No</td><td>Borders</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 20: Use Table for Layout</h2>
+    <table border="1">
+      <tr><td style="width: 30%;">Left Menu</td><td>Main Content</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 21: Table Inside a Table</h2>
+    <table border="1">
+      <tr>
+        <td>Outer Table
+          <table border="1" class="inner-table">
+            <tr>
+              <td>Inner Table
+                <table border="1" class="inner-table">
+                  <tr><td>Deep Nested</td></tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 22: Table with Merged Cells</h2>
+    <table border="1">
+      <tr><td rowspan="2" colspan="2">A</td><td>B</td></tr>
+      <tr><td>C</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 23: Align Text</h2>
+    <table border="1">
+      <tr>
+        <td style="text-align: right;">Right</td>
+        <td style="text-align: center; vertical-align: top;">Center Top</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Practice 24: Responsive Width Table</h2>
+    <table style="width: 100%;" border="1">
+      <tr><th>Full Width Table</th><th>✓</th></tr>
+      <tr><td>Stretches to screen</td><td>Yes</td></tr>
+    </table>
+  </section>
+
+  <section>
+  <table border="1">
+    <caption>A</caption>
+    <th colspan="2cm" style="color: rgb(255, 255, 255);">🥳Hobby Chart👻 </th>
+    <tr><td>Name</td><td>Hobbies</td></tr>
+    <tr><td>Atharva</td><td>Playing Cricket 🏏</td></tr>
+    <tr><td>Aaryan</td><td>Sleeping😴</td></tr>
+    <tr><td>Soham</td><td>Smoking🚬</td></tr>
+
+</table>
+</section>
+
+</body>
+</html>
