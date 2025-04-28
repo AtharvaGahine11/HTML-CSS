@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CrickBros Street Cricket Scoreboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: url('https://images.unsplash.com/photo-1623058668263-39e4e76fd2e3?crop=entropy&cs=tinysrgb&fit=crop&h=1080&w=1920') no-repeat center center/cover;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Bebas Neue', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background-color: #111;
+    }
+
+    .scoreboard {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px 50px;
+      border: 3px solid yellow;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 2rem;
+      box-shadow: 0 0 15px yellow;
+    }
+
+    .team-name {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #00d9ff;
+    }
+
+    .score, .overs, .striker {
+      margin: 10px 0;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffcc00;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffa500;
+    }
+
+    .event-popup {
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 5rem;
+      font-weight: bold;
+      color: #fff;
+      z-index: 1000;
+      animation: pop 0.8s ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5) translateX(-50%); opacity: 0; }
+      50% { transform: scale(1.5) translateX(-50%); opacity: 1; }
+      100% { transform: scale(1) translateX(-50%); opacity: 0; }
+    }
+
+    .hide {
+      display: none;
+    }
+
+    /* Special Effects */
+    .six {
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    }
+    .four {
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    }
+    .out {
+      color: red;
+      text-shadow: 0 0 10px red, 0 0 20px red;
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(-10px); }
+      25% { transform: translate(10px); }
+      50% { transform: translate(-10px); }
+      75% { transform: translate(10px); }
+      100% { transform: translate(0); }
+    }
+
+    .new-batsman {
+      margin-top: 20px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .new-batsman img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-top: 10px;
+      border: 3px solid yellow;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .end-message {
+      font-size: 2rem;
+      margin-top: 20px;
+      color: #ff4444;
+    }
+
+    /* Leaderboard Styling */
+    .leaderboard {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 40px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .leaderboard h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .leaderboard ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .leaderboard li {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="scoreboard">
+  <div class="team-name">CrickBros XI</div>
+  <div class="score" id="score">0/0</div>
+  <div class="overs" id="overs">0.0 overs</div>
+  <div class="striker" id="striker">Striker: Atharva</div>
+</div>
+
+<div class="buttons">
+  <button onclick="hit('SIX')">Hit SIX</button>
+  <button onclick="hit('FOUR')">Hit FOUR</button>
+  <button onclick="hit('OUT')">OUT!</button>
+  <button onclick="nextBall()">Next Ball</button>
+</div>
+
+<div id="event" class="event-popup hide">EVENT!</div>
+
+<audio id="cheer" src="https://assets.mixkit.co/sfx/preview/mixkit-crowd-cheering-and-clapping-532.mp3"></audio>
+<audio id="outSound" src="https://assets.mixkit.co/sfx/preview/mixkit-crowd-sad-reaction-424.mp3"></audio>
+
+<div class="new-batsman" id="newBatsman"></div>
+<div class="end-message" id="endMsg"></div>
+
+<!-- Leaderboard -->
+<div class="leaderboard">
+  <h2>Leaderboard</h2>
+  <ul id="leaderboard">
+    <li>1. N/A</li>
+    <li>2. N/A</li>
+    <li>3. N/A</li>
+    <li>4. N/A</li>
+    <li>5. N/A</li>
+  </ul>
+</div>
+
+<script>
+  let runs = 0;
+  let wickets = 0;
+  let balls = 0;
+  let overs = 0;
+  const maxOvers = 10;
+  let players = [
+    { name: "Atharva", runs: 0, balls: 0, wickets: 0, img: "https://via.placeholder.com/100?text=Atharva" },
+    { name: "Sahil", runs: 0, balls: 0, wickets: 0, img: "https://via.placeholder.com/100?text=Sahil" },
+    { name: "Omkar", runs: 0, balls: 0, wickets: 0, img: "https://via.placeholder.com/100?text=Omkar" },
+    { name: "Prathamesh", runs: 0, balls: 0, wickets: 0, img: "https://via.placeholder.com/100?text=Pratham" },
+    { name: "Nikhil", runs: 0, balls: 0, wickets: 0, img: "https://via.placeholder.com/100?text=Nikhil" }
+  ];
+
+  let striker = players[0];
+  let nonStriker = players[1];
+  let nextBatsmanIndex = 2;
+
+  const scoreDiv = document.getElementById('score');
+  const oversDiv = document.getElementById('overs');
+  const eventPopup = document.getElementById('event');
+  const endMsg = document.getElementById('endMsg');
+  const cheer = document.getElementById('cheer');
+  const outSound = document.getElementById('outSound');
+  const strikerDiv = document.getElementById('striker');
+  const newBatsmanDiv = document.getElementById('newBatsman');
+  const leaderboardDiv = document.getElementById('leaderboard');
+
+  function updateScoreboard() {
+    scoreDiv.textContent = `${runs}/${wickets}`;
+    oversDiv.textContent = `${overs}.${balls} overs`;
+    strikerDiv.textContent = `Striker: ${striker.name}`;
+  }
+
+  function hit(type) {
+    if (overs >= maxOvers) return;
+    showEvent(type);
+
+    let runScored = 0;
+
+    if (type === 'SIX') {
+      runs += 6;
+      runScored = 6;
+      striker.runs += 6;
+      striker.balls += 1;
+      cheer.play();
+    } else if (type === 'FOUR') {
+      runs += 4;
+      runScored = 4;
+      striker.runs += 4;
+      striker.balls += 1;
+      cheer.play();
+    } else if (type === 'OUT') {
+      wickets += 1;
+      striker.wickets += 1;
+      outSound.play();
+      if (nextBatsmanIndex < players.length) {
+        striker = players[nextBatsmanIndex];
+        showNewBatsman(striker);
+        nextBatsmanIndex++;
+      } else {
+        strikerDiv.textContent = `No batsmen left`;
+      }
+    }
+
+    nextBall(runScored);
+    updateScoreboard();
+    checkEnd();
+  }
+
+  function nextBall(run = 0) {
+    balls++;
+
+    if (run % 2 !== 0) {
+      [striker, nonStriker] = [nonStriker, striker];
+      strikerDiv.textContent = `Striker: ${striker.name}`;
+    }
+
+    if (balls >= 6) {
+      balls = 0;
+      overs++;
+      [striker, nonStriker] = [nonStriker, striker];
+      strikerDiv.textContent = `Striker: ${striker.name}`;
+    }
+  }
+
+  function showEvent(type) {
+    eventPopup.classList.remove('hide', 'six', 'out', 'four');
+
+    if (type === 'SIX') {
+      eventPopup.textContent = 'SIX!!!';
+      eventPopup.classList.add('six');
+    } else if (type === 'FOUR') {
+      eventPopup.textContent = 'FOUR!!';
+      eventPopup.classList.add('four');
+    } else if (type === 'OUT') {
+      eventPopup.textContent = 'OUT!!';
+      eventPopup.classList.add('out');
+    }
+
+    setTimeout(() => {
+      eventPopup.classList.add('hide');
+    }, 1500);
+  }
+
+  function checkEnd() {
+    if (overs >= maxOvers) {
+      endMsg.textContent = "Match Over! Final Score: " + runs + "/" + wickets;
+      updateLeaderboard();
+    }
+  }
+
+  function showNewBatsman(player) {
+    newBatsmanDiv.innerHTML = `
+      <div>New Batsman: ${player.name}</div>
+      <img src="${player.img}" alt="${player.name}">
+    `;
+    setTimeout(() => {
+      newBatsmanDiv.innerHTML = '';
+    }, 3000); // Show new batsman for 3 seconds
+  }
+
+  function updateLeaderboard() {
+    players.sort((a, b) => b.runs - a.runs || b.wickets - a.wickets);
+
+    let leaderboardHtml = '';
+    players.slice(0, 5).forEach((player, index) => {
+      leaderboardHtml += `<li>${index + 1}. ${player.name} - Runs: ${player.runs} | Wickets: ${player.wickets}</li>`;
+    });
+
+    leaderboardDiv.innerHTML = leaderboardHtml;
+  }
+
+  updateScoreboard();
+</script>
+
+</body>
+</html>
