@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atharva Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+      animation: slideInLeft 1s ease forwards;
+    }
+
+    .sidebar h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #00c6ff;
+    }
+
+    .sidebar p {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    .sidebar .contact i {
+      margin-right: 10px;
+      color: #00c6ff;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      border-left: 5px solid #00c6ff;
+      padding-left: 15px;
+    }
+
+    .skill {
+      margin: 10px 0;
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 20px;
+      background: #444;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(to right, #00f2fe, #4facfe);
+      width: 0;
+      animation: fillSkill 2s forwards;
+    }
+
+    .bar-fill.html { width: 95%; }
+    .bar-fill.css { width: 90%; }
+    .bar-fill.js { width: 85%; }
+    .bar-fill.react { width: 80%; }
+
+    .exp, .edu {
+      margin-bottom: 20px;
+    }
+
+    .exp strong, .edu strong {
+      color: #00c6ff;
+    }
+
+    .btn-download {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00c6ff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-download:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fillSkill {
+      from { width: 0; }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <h1>Atharva Gahine</h1>
+      <p>Frontend Developer<br>UI/UX Enthusiast</p>
+    </div>
+    <div class="contact">
+      <p><i class="fas fa-envelope"></i>gahinepvt@gmail.com</p><br>
+      <p><i class="fas fa-phone"></i>+91 7972052561</p><br>
+      <p><i class="fab fa-github"></i>https://github.com/AtharvaGahine11</p>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <section>
+      <h2>About Me</h2>
+      <p>Creative developer passionate about turning designs into functional, interactive experiences. I enjoy solving real-world problems with clean UI and responsive layout strategies.</p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skill">HTML
+        <div class="bar"><div class="bar-fill html"></div></div>
+      </div>
+      <div class="skill">CSS
+        <div class="bar"><div class="bar-fill css"></div></div>
+      </div>
+      <div class="skill">JavaScript
+        <div class="bar"><div class="bar-fill js"></div></div>
+      </div>
+      <div class="skill">Python
+        <div class="bar"><div class="bar-fill react"></div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="exp">
+        <strong>Frontend Intern - Let's Upgrade</strong><br>
+        <em>Jan 2024 – Present</em>
+        <p>Built UI components, optimized performance, and implemented animations to improve user interaction.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="edu">
+        <strong>B-Tech in Computer Science – ITM Skills University</strong><br>
+        <em>2024 – 2028</em>
+      </div>
+    </section>
+
+    <a href="#" class="btn-download"><i class="fas fa-download"></i> Download Resume</a>
+  </div>
+</body>
+</html>
